@@ -5,7 +5,6 @@
 # This script clones the post-clone template and applies it to the
 # target repository.
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 readonly template=$(mktemp -d /tmp/post-clone.XXXXX)
 
 teardown() {
@@ -23,7 +22,7 @@ init() {
 }
 
 main() {
-    config clone --template="${template}" "$@"
+    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME clone --template="${template}" "$@"
 }
 
 init &>/dev/null

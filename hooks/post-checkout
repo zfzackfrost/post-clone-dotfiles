@@ -7,8 +7,7 @@
 # scripts that operate on the cloned git repository.
 # path to the newly cloned repo on disk
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-readonly repo=$(config rev-parse --show-toplevel)
+readonly repo=$(/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME rev-parse --show-toplevel)
 
 main() {
     rm -rf -- "${repo}/.cfg/hooks"
@@ -18,7 +17,7 @@ main() {
 }
 
 initializeSubmodules() {
-    config submodule update --init --recursive
+    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME submodule update --init --recursive
 }
 
 installClonedReposHooks() {
